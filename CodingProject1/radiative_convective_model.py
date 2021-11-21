@@ -45,7 +45,7 @@ def model8(T,n,tau_0,T1): # convective and radiative models for Figure 8
     
 n_args = 1001
 x = np.linspace(0.2,1,n_args)
-'''
+
 ## Figure 1
 ## ===============================
 Dtrc = [0.01,0.1,0.5,1.0,2.0]
@@ -118,10 +118,10 @@ for i in range(len(k_D)):
 
     if i == 2:
         k_D[i] = 0
-        ax3.loglog(sol.y.flatten(),sol.t,label=r'k/D$\approx${}'.format(k_D[i]),color=colours[i])
+        ax3.loglog(sol.y.flatten(),sol.t,label=r'k/D$\approx${}'.format(k_D[i]),color=colours[i],linewidth=0.9)
         
     else:
-        ax3.loglog(sol.y.flatten(),sol.t,label='k/D={}'.format(k_D[i]),color=colours[i])
+        ax3.loglog(sol.y.flatten(),sol.t,label='k/D={}'.format(k_D[i]),color=colours[i],linewidth=0.9)
     
 ax3.set_xlabel(r'$\sigma T(p)^4/F$,'+'\n normalized temperature')
 ax3.set_ylabel('normalized pressure,\n'+r' $p/p_0$')
@@ -135,7 +135,7 @@ ax3.legend()
 plt.gca().invert_yaxis()
 plt.tight_layout()
 plt.show()
-'''
+
 ## Figure 4
 ## ========================
 fig4,ax4 = plt.subplots()
@@ -144,11 +144,11 @@ temps = np.linspace(170,800,n_args)
 
 # n = 1, tau_0 = 400
 p1 = [model8(i,1,400,260) for i in temps]
-ax4.plot(temps,p1,color='xkcd:navy',linestyle=':',label='n=1')
+ax4.plot(temps,p1,color='xkcd:navy',linestyle=':',label='n=1',linewidth=0.9)
 
 # n = 2, tau_0 = 2x10^{5}
 p2 = [model8(i,2,2e5,215) for i in temps]
-ax4.plot(temps,p2,color='orangered',linestyle='--',label='n=2')
+ax4.plot(temps,p2,color='royalblue',linestyle=(0,(7,5)),label='n=2',linewidth=0.9)
 
 ax4.set_xlabel('Temperature [K]')
 ax4.set_ylabel('Pressure [bar]')
@@ -163,3 +163,4 @@ ax4.legend()
 plt.gca().invert_yaxis()
 plt.tight_layout()
 plt.show()
+BB
