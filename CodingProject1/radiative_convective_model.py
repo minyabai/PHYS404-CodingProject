@@ -23,12 +23,12 @@ def model2_sagan(y,x): # Equation 32 for Figure 2
     return y/(x*(1+y))-1
 
 def model3(t,y,kD): # Equation 33 for Figure 3
-    # Def x = T/T_o, y = P/P_o
+    # Def t = P/P_o, y = (T/T_o)^4
     tau = tau_o*t**n
     k = kD*D
     return [t**(-1)*y*(n*k*tau*((1-kD**2)*np.exp(-k*tau)/(kD+1+(kD**2-1)*np.exp(-k*tau))))]
 
-def model8(T,n,tau_0,T1): # Convective Model
+def model8(T,n,tau_0,T1): # convective and radiative models for Figure 8
     p0 = 92
     T0 = 730
     gamma = 1.3
@@ -161,4 +161,5 @@ ax4.tick_params(which='minor', right=True, axis='y', direction='in')
 ax4.tick_params(which='minor', top=True, axis='x', direction='in') 
 ax4.legend()
 plt.gca().invert_yaxis()
+plt.tight_layout()
 plt.show()
