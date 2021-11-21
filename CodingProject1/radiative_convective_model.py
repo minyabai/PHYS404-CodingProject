@@ -60,6 +60,7 @@ ax1.set_yscale('log')
 ax1.set_ylim(0.01,20)
 ax1.set_xlim(0.2,1.0)
 plt.gca().invert_yaxis()
+plt.tight_layout()
 plt.show()
 
 ## Figure 2
@@ -82,6 +83,7 @@ ax2.set_ylim(0.01,20)
 ax2.set_xlim(0.2,1.0)
 ax2.legend()
 plt.gca().invert_yaxis()
+plt.tight_layout()
 plt.show()
 
 ## Figure 3
@@ -92,16 +94,22 @@ tau_o = 2
 D = 5/3
 
 # Initial condition and arguments
-k_D = [0.5,0.1,10]
-t0 = [0.76,0.57,4.1]
+k_D = [0.5,0.1,1e-10,10]
+t0 = [0.76,0.57,0.52,4.1]
 pp0 = np.linspace(0.1,2,n_args)
 
 fig3,ax3 = plt.subplots()
+colours = ['royalblue','xkcd:navy','salmon','lightsteelblue']
 
 for i in range(len(k_D)):
     sol = solve_ivp(model3,t_span=[pp0[0],pp0[-1]],y0=[t0[i]],t_eval=pp0,args=[k_D[i]])
-    
-    ax3.loglog(sol.y.flatten(),sol.t,label='k/D={}'.format(k_D[i]))
+
+    if i == 2:
+        k_D[i] = 0
+        ax3.loglog(sol.y.flatten(),sol.t,label=r'k/D$\approx${}'.format(k_D[i]),color=colours[i])
+        
+    else:
+        ax3.loglog(sol.y.flatten(),sol.t,label='k/D={}'.format(k_D[i]),color=colours[i])
     
 ax3.set_xlabel(r'$\sigma T(p)^4/F$,'+'\n normalized temperature')
 ax3.set_ylabel('normalized pressure,\n'+r' $p/p_0$')
@@ -113,4 +121,8 @@ ax3.tick_params(which='minor', right=True, axis='y', direction='in')
 ax3.tick_params(which='minor', top=True, axis='x', direction='in')
 ax3.legend()
 plt.gca().invert_yaxis()
+plt.tight_layout()
 plt.show()
+
+## Figure 4
+## ========================
