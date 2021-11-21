@@ -24,13 +24,8 @@ def model2_sagan(y,x): # Equation 32 for Figure 2
 
 def model3(t,y,kD): # Equation 33 for Figure 3
     # Def x = T/T_o, y = P/P_o
-    # x,y = z
     tau = tau_o*t**n
     k = kD*D
-    # return [t**(-4)*y*(np.exp(k*tau)/(1-kD)+1)/(n*k*tau)]
-    # x,y = z
-    # tau = tau_o*y**n
-    # k = kD * D
     return [t**(-1)*y*(n*k*tau*((1-kD**2)*np.exp(-k*tau)/(kD+1+(kD**2-1)*np.exp(-k*tau))))]
 
 def model8(): # Equation [] for Figure 8
@@ -55,6 +50,8 @@ for i in range(5):
     ax1.plot(x,y_data,label='D_trc={}'.format(Dtrc[i]),color='xkcd:blue',linewidth=0.9)
     ax1.text(px[i], py[i], 'D_trc={}'.format(Dtrc[i]),bbox=dict(facecolor='white', edgecolor='none'),rotation=4.5)
 
+ax1.set_xlabel(r'4$\beta$/n')
+ax1.set_ylabel('rad-boundary optical depth,\n'+r' $D\tau_{0}$')
 ax1.fill_betweenx(np.linspace(0.01,20,10), 0.3, 0.5, facecolor='lightsteelblue',alpha=0.7)
 ax1.tick_params(top=True,axis='x',direction='in')
 ax1.tick_params(right=True,axis='y',direction='in')
@@ -74,6 +71,8 @@ fig2,ax2 = plt.subplots()
 
 ax2.plot(x,y_model,label='Model',color='xkcd:blue',linewidth=1)
 ax2.plot(x,y_sagan,label='Sagan',color='xkcd:navy',linestyle=(0, (7, 5)),linewidth = 1)
+ax2.set_xlabel(r'4$\beta$/n')
+ax2.set_ylabel('reference optical depth,\n'+r'$D\tau_{rc}$')
 ax2.fill_betweenx(np.linspace(0.01,20,10), 0.3, 0.5, facecolor='lightsteelblue',alpha=0.7)
 ax2.tick_params(top=True,axis='x',direction='in')                                           
 ax2.tick_params(right=True,axis='y',direction='in')                                         
@@ -104,6 +103,8 @@ for i in range(len(k_D)):
     
     ax3.loglog(sol.y.flatten(),sol.t,label='k/D={}'.format(k_D[i]))
     
+ax3.set_xlabel(r'$\sigma T(p)^4/F$,'+'\n normalized temperature')
+ax3.set_ylabel('normalized pressure,\n'+r' $p/p_0$')
 ax3.set_ylim(0.1,2)
 ax3.set_xlim(0.4,10)
 ax3.tick_params(top=True,axis='x',direction='in')
