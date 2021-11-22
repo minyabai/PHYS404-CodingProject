@@ -2,6 +2,7 @@
 ## ==============================
 ## Minya Bai (260856843)
 ## Radiative Convective Model
+## Plotting figures from Robinson and Catling paper
 
 import numpy as np
 from matplotlib import pyplot as plt
@@ -12,11 +13,12 @@ from scipy.integrate import solve_ivp
 ## When defining function, Gamma(x,y) = gammaincc(1+x)*gamma()
 
 def model1(y,x,a): # Equation 30 for Figure 1
-    # Define x = 4\Beta/n, y = D\tau_{0}, a = D\tau_{rc}
+    # Define x = 4\beta/n, y = D\tau_{0}, a = D\tau_{rc}
     gammas = gammaincc(1+x,a)*gamma(1+x) - gammaincc(1+x,y)*gamma(1+x)
     return (y/a)**x*np.exp(-(y-a))*(1+(np.exp(y)/(y**x))*(gammas))-(2+a)/(1+a)
     
 def model2(y,x): # Equation 31 for Figure 2
+    # Define x = 4\beta/n, y = D\tau_{rc}
     return gammaincc(1+x,y)*gamma(1+x)/(y**x*np.exp(-y))-(2+y)/(1+y)
 
 def model2_sagan(y,x): # Equation 32 for Figure 2
@@ -163,4 +165,3 @@ ax4.legend()
 plt.gca().invert_yaxis()
 plt.tight_layout()
 plt.show()
-BB
