@@ -34,7 +34,7 @@ for i in range(5):
     ax1.text(px[i], py[i], 'D_trc={}'.format(Dtrc[i]),bbox=dict(facecolor='white', edgecolor='none'),rotation=4.5)
 
 ax1.set_xlabel(r'4$\beta$/n')
-ax1.set_ylabel('rad-boundary optical depth,\n'+r' $D\tau_{0}$')
+ax1.set_ylabel('reference optical depth,\n'+r' $D\tau_{0}$')
 ax1.fill_betweenx(np.linspace(0.01,20,10), 0.3, 0.5, facecolor='lightsteelblue',alpha=0.7)
 ax1.tick_params(top=True,axis='x',direction='in')
 ax1.tick_params(right=True,axis='y',direction='in')

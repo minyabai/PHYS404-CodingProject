@@ -30,11 +30,11 @@ fig4,ax4 = plt.subplots()
 
 # n = 1, tau_0 = 400
 p1 = [model8(i,1,400,260) for i in temps]
-ax4.plot(temps,p1,color='xkcd:navy',linestyle=':',label='n=1',linewidth=0.9)
+ax4.plot(temps,p1,color='xkcd:navy',linestyle=':',label='n=1',linewidth=1.5)
 
 # n = 2, tau_0 = 2x10^{5}
 p2 = [model8(i,2,2e5,215) for i in temps]
-ax4.plot(temps,p2,color='royalblue',linestyle=(0,(7,5)),label='n=2',linewidth=0.9)
+ax4.plot(temps,p2,color='orangered',linestyle=(0,(7,5)),label='n=2',linewidth=1.5)
 
 ax4.set_xlabel('Temperature [K]')
 ax4.set_ylabel('Pressure [bar]')

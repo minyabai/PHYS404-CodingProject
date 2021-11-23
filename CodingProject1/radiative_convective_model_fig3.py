@@ -39,7 +39,7 @@ for i in range(len(k_D)):
         ax3.loglog(sol.y.flatten(),sol.t,label=r'k/D$\approx${}'.format(k_D[i]),color=colours[i],linewidth=0.9)
         
     else:
-        ax3.loglog(sol.y.flatten(),sol.t,label='k/D={}'.format(k_D[i]),color=colours[i],linewidth=0.9)
+        ax3.loglog(sol.y.flatten(),sol.t,label='k/D={}'.format(k_D[i]),color=colours[i],linewidth=1.1)
     
 ax3.set_xlabel(r'$\sigma T(p)^4/F$,'+'\n normalized temperature')
 ax3.set_ylabel('normalized pressure,\n'+r' $p/p_0$')
