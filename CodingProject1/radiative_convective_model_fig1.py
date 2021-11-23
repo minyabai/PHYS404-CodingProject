@@ -30,8 +30,8 @@ for i in range(5):
     y_data = np.array([fsolve(model1,y0[i],args=(x[j],Dtrc[i])) for j in range(n_args)])
     y_data = y_data.flatten()
     
-    ax1.plot(x,y_data,label='D_trc={}'.format(Dtrc[i]),color='xkcd:blue',linewidth=0.9)
-    ax1.text(px[i], py[i], 'D_trc={}'.format(Dtrc[i]),bbox=dict(facecolor='white', edgecolor='none'),rotation=4.5)
+    ax1.plot(x,y_data,label=r'D$\tau_r$={}'.format(Dtrc[i]),color='xkcd:blue',linewidth=0.9)
+    ax1.text(px[i], py[i], r'D$\tau_r$={}'.format(Dtrc[i]),bbox=dict(facecolor='white', edgecolor='none'),rotation=4.5)
 
 ax1.set_xlabel(r'4$\beta$/n')
 ax1.set_ylabel('reference optical depth,\n'+r' $D\tau_{0}$')
