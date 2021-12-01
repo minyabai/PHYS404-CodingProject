@@ -64,30 +64,32 @@ sol_500 = solve_ivp(dT_dt,t_span=[t2[0],t2[-1]],y0=[T0],t_eval=t2,args=[oblq])
 
 fit = [diurnal(i,oblq) for i in t2]
 
-fig,ax = plt.subplots(1,2)
+fig,ax = plt.subplots(2)
 
-ax[0].plot(sol_50.t/d_s,sol_50.y[0],color='blue',alpha=0.8,markersize=0.5)
+ax[0].plot(sol_50.t/d_s,sol_50.y[0],color='blue',alpha=0.8,markersize=0.5,label='50 days')
 ax[0].set_xlabel('Time [days]')
 ax[0].set_ylabel('Temperature [K]')
-ax[0].set_title('Temperature as a function of Time \n over 50 days')
-ax[1].plot(sol_500.t/d_s,sol_500.y[0],color='blue',alpha=0.8,markersize=0.5)
+ax[0].legend(loc='lower right')
+ax[0].set_xlim(0,50)
+ax[1].plot(sol_500.t/d_s,sol_500.y[0],color='blue',alpha=0.8,markersize=0.5,label='500 days')
 ax[1].plot(t2/d_s,fit,color='red',label='Diurnally Averaged Flux')
-ax[1].legend()
+ax[1].legend(loc='lower right')
 ax[1].set_xlabel('Time [days]')
 ax[1].set_ylabel('Temperature [K]')
-ax[1].set_title('Temperature as a function of Time \n over 500 days')
-plt.show()'''
+ax[1].set_xlim(0,500)
+plt.tight_layout()
+plt.show()
 
 ## Choose your own adventure (time)
 ## =====================================
 # I will change obliquity (bc it sounds the coolest :D)
 m = 5
-oblq = np.linspace(0,np.pi*0.235,m)
+oblq = np.linspace(0,np.pi/4,m)
 t = np.arange(0,365*d_s,3600)
 
 fig2 = plt.figure()
-gs = fig2.add_gridspec(m,hspace=0)
-ax2 = gs.subplots(sharex=True)
+gs2 = fig2.add_gridspec(m,hspace=0)
+ax2 = gs2.subplots(sharex=True)
 
 for i in range(m):
     sol = solve_ivp(dT_dt,t_span=[t[0],t[-1]],y0=[T0],t_eval=t,args=[oblq[i]])
@@ -95,13 +97,11 @@ for i in range(m):
     # x,y = i//3, i%3
     ax2[i].plot(sol.t/d_s,sol.y[0],color='blue',alpha=0.20*(5-i),label='Obliquity = {}'.format(np.round(oblq[i],3)))
     ax2[i].plot(t/d_s,fit,color='red')
-    # ax2[i].set_xlabel('Time [days]')
-    # ax2[i].set_ylabel('Temperature [K]')
-    # ax2[i].set_title('Obliquity = {} radians'.format(np.round(oblq[i],3)))
-    ax2[i].legend(loc='upper right')
+    ax2[i].set_xlim(0,365)
+    ax2[i].set_ylim(0,280)
+    ax2[i].legend(loc='lower right')
 
 ax2[2].set_ylabel('Temperature [K]')
 ax2[-1].set_xlabel('Time [days]')
 plt.tight_layout()
 plt.show()
-'''
